@@ -1,0 +1,25 @@
+<div>
+    <h2>Login</h2>
+    <p *ngIf="error" class="error">{{ error }}</p>
+  
+    <form (ngSubmit)="handleSubmit()">
+      <input
+        type="email"
+        placeholder="Email"
+        [(ngModel)]="formData.email"
+        name="email"
+        required
+      />
+      <input
+        type="password"
+        placeholder="Contraseña"
+        [(ngModel)]="formData.password"
+        name="password"
+        required
+      />
+  
+      <button type="submit">Iniciar sesión</button>
+    </form>
+    <p>¿No tienes una cuenta? <a routerLink="/register">Registrarse</a></p>
+  </div>
+  

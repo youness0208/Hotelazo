@@ -1,0 +1,54 @@
+<div *ngIf="isLoading" class="loading-container">
+    <span class="loading">Cargando...</span>
+  </div>
+  
+  <div *ngIf="!isLoading" class="details-container">
+    
+    <p *ngIf="message" class="success-message">{{ message }}</p>
+    <p *ngIf="error" class="error-message">{{ error }}</p>
+  
+    <!-- Room Details -->
+    <h2 class="room-title">Detalles de la habitación</h2>
+    <img [src]="room?.imageUrl" [alt]="room?.type" class="room-image" />
+    <div class="details-info">
+      <h3>{{ room?.type }}</h3>
+      <p><strong>Número de habitación:</strong> {{ room?.roomNumber }}</p>
+      <p><strong>Capacidad:</strong> {{ room?.capacity }}</p>
+      <p><strong>Precio:</strong> {{ room?.pricePerNight }}EUR / noche</p>
+      <p>{{ room?.description }}</p>
+    </div>
+  
+    <!-- Booking Controls -->
+    <div class="booking-info">
+      <button class="book-now-button" (click)="showDatePicker = true">
+        Seleccione fechas
+      </button>
+  
+      <!-- Date Picker -->
+      <div *ngIf="showDatePicker" class="date-picker-container">
+        <div class="date-picker">
+          <label>Elige la fecha de entrada</label>
+          <input type="date" [(ngModel)]="checkInDate" [min]="minDate" />
+        </div>
+  
+        <div class="date-picker">
+          <label>Elige la fecha de salida</label>
+          <input type="date" [(ngModel)]="checkOutDate" [min]="checkInDate" />
+        </div>
+  
+        <button (click)="handleConfirmation()" class="proceed-button">Proceder</button>
+      </div>
+  
+      <!-- Booking Preview and Submit -->
+      <div *ngIf="showBookingPreview" class="preview-container">
+        <h3>Vista previa de la reserva</h3>
+        <p><strong>Fecha de entrada:</strong> {{ checkInDate | date: 'yyyy-MM-dd' }}</p>
+        <p><strong>Fecha de salida:</strong> {{ checkOutDate | date: 'yyyy-MM-dd' }}</p>
+        <p><strong>Total de días para quedarse:</strong> {{ totalDaysToStay }}</p>
+        <p><strong>Precio Total:</strong> {{ totalPrice }} EUR</p>
+        <button (click)="acceptBooking()" class="confirm-booking-button">Confirmar y Reservar</button>
+        <button class="cancel-button" (click)="cancelBookingPreview()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+  

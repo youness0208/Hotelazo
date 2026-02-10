@@ -1,0 +1,18 @@
+<nav>
+    <div class="brand">
+        <a href="/home">Hotelazo</a>
+    </div>
+    <ul>
+        <li><a routerLink="/home" routerLinkActive="active">Inicio</a></li>
+        <li><a routerLink="/rooms" routerLinkActive="active">Habitaciones</a></li>
+        <li><a routerLink="/find-booking" routerLinkActive="active">Encuentra reservas</a></li>
+
+
+        <li *ngIf="isCustomer"><a routerLink="/profile" routerLinkActive="active">Perfil</a></li>
+        <li *ngIf="isAdmin"><a routerLink="/admin" routerLinkActive="active">Admin</a></li>
+        <li *ngIf="!isAuthemticated"><a routerLink="/login" routerLinkActive="active">Iniciar sesión</a></li>
+        <li *ngIf="!isAuthemticated"><a routerLink="/register" routerLinkActive="active">Registro</a></li>
+
+        <li *ngIf="isAuthemticated" (click)="handleLogout()">Cerrar sesión</li>
+    </ul>
+</nav>

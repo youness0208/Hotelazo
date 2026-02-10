@@ -1,0 +1,28 @@
+<section>
+    <div *ngIf="roomSearchResults && roomSearchResults.length > 0">
+      <div
+        *ngFor="let room of roomSearchResults"
+        class="item"
+        [attr.key]="room.id"
+      >
+        <img [src]="room.imageUrl" [alt]="room.roomNumber" />
+  
+        <div class="details">
+          <h3>{{ room.type }}</h3>
+          <p>Precio: {{ room.pricePerNight }} EUR/Noche</p>
+          <p>Descripción: {{ room.description }}</p>
+        </div>
+  
+        <div class="book-now">
+          
+          <button *ngIf="isAdmin" (click)="navigateToEditRoom(room.id)">
+            Editar habitación
+          </button>
+          <button *ngIf="!isAdmin" (click)="navigateToRoomDetails(room.id)">
+            Ver / Reservar ahora
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  

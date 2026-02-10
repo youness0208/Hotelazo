@@ -1,0 +1,73 @@
+<div class="container">
+    <h2>Agregar nueva habitación</h2>
+    <!-- Error and Success messages -->
+    <div *ngIf="error" class="error">{{ error }}</div>
+    <div *ngIf="success" class="success">{{ success }}</div>
+  
+    <!-- Room Details Form -->
+    <div class="room-form">
+      <!-- Room Image Upload -->
+      <div class="form-group">
+        <div *ngIf="preview">
+          <img [src]="preview" alt="Room Preview" />
+        </div>
+        <input type="file" name="roomPhoto" (change)="handleFileChange($event)" />
+      </div>
+  
+      <!-- Room Type -->
+      <div class="form-group">
+        <label>Room Type</label>
+        <select [(ngModel)]="roomDetails.type" (change)="handleRoomTypeChange($event)">
+          <option value="">Selecciona un tipo de habitación</option>
+          <option *ngFor="let type of roomTypes" [value]="type">{{ type }}</option>
+        </select>
+      </div>
+  
+      <!-- Room Price -->
+      <div class="form-group">
+        <label>Precio de la habitación</label>
+        <input
+          type="number"
+          name="pricePerNight"
+          [(ngModel)]="roomDetails.pricePerNight"
+          (input)="handleChange($event)"
+        />
+      </div>
+  
+      <!-- Room Number -->
+      <div class="form-group">
+        <label>Número de habitación</label>
+        <input
+          type="number"
+          name="roomNumber"
+          [(ngModel)]="roomDetails.roomNumber"
+          (input)="handleChange($event)"
+        />
+      </div>
+  
+      <!-- Room Capacity -->
+      <div class="form-group">
+        <label>Capacidad de la habitación</label>
+        <input
+          type="number"
+          name="capacity"
+          [(ngModel)]="roomDetails.capacity"
+          (input)="handleChange($event)"
+        />
+      </div>
+  
+      <!-- Room Description -->
+      <div class="form-group">
+        <label>Descripción de la habitación</label>
+        <textarea
+          name="description"
+          [(ngModel)]="roomDetails.description"
+          (input)="handleChange($event)"
+        ></textarea>
+      </div>
+  
+      <!-- Submit Button -->
+      <button (click)="addRoom()">Añadir habitación</button>
+    </div>
+  </div>
+  

@@ -1,0 +1,50 @@
+<div class="profile">
+    <div *ngIf="user; else loading">
+      <h2>Bienvenido, {{ user.firstName }}</h2>
+      <div class="actions">
+        <button (click)="handleEditProfile()">Editar perfil</button>
+        <button class="logout" (click)="handleLogout()">Cerrar sesión</button>
+      </div>
+  
+      <!-- Error Message -->
+      <p *ngIf="error" class="error">{{ error }}</p>
+  
+      <!-- Profile Details -->
+      <div class="details">
+        <h3>Detalles de mi perfil</h3>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Número de teléfono:</strong> {{ user.phoneNumber }}</p>
+      </div>
+  
+      <!-- Bookings Section -->
+      <section>
+        <h3>Mi historial de reservas</h3>
+        <div *ngIf="bookings && bookings.length > 0; else noBookings">
+          <div *ngFor="let booking of bookings" class="item">
+            <p><strong>Código de reserva:</strong> {{ booking?.bookingReference }}</p>
+            <p>
+              <strong>Fecha de entrada:</strong> {{ booking?.checkInDate | date }}
+            </p>
+            <p>
+              <strong>Fecha de salida:</strong> {{ booking?.checkOutDate | date }}
+            </p>
+            <p><strong>Estado del pago:</strong> {{ booking?.paymentStatus }}</p>
+            <p><strong>Estado de la reserva:</strong> {{ booking?.bookingStatus }}</p>
+            <p><strong>Total:</strong> {{ booking?.totalPrice | currency:'EUR'  }}</p>
+            <p><strong>Número de habitación:</strong> {{ booking?.room?.roomNumber }}</p>
+            <p><strong>Tipo de habitación:</strong> {{ booking?.room?.type }}</p>
+            <img [src]="booking?.room?.imageUrl" alt="Room" />
+          </div>
+        </div>
+        <ng-template #noBookings>
+          <p>No se encontraron reservas.</p>
+        </ng-template>
+      </section>
+    </div>
+  
+    <!-- Loading Indicator -->
+    <ng-template #loading>
+      <p>Cargando perfil...</p>
+    </ng-template>
+  </div>
+  

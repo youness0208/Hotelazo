@@ -1,0 +1,39 @@
+
+<p *ngIf="error" class="error">{{ error }}</p>
+<div class="container">
+  
+  <div class="field">
+    <label>Fecha de entrada</label>
+    <input
+      type="date"
+      [(ngModel)]="startDate"
+      [min]="minDate"
+      placeholder="Seleccione fecha de entrada"
+    />
+  </div>
+
+  
+  <div class="field">
+    <label>Fecha de salida</label>
+    <input
+      type="date"
+      [(ngModel)]="endDate"
+      [min]="startDate"
+      placeholder="Seleccione fecha de salida"
+    />
+  </div>
+
+  
+  <div class="field">
+    <label>Tipo de habitación</label>
+    <select [(ngModel)]="roomType">
+      <option disabled value="">Seleccione Tipo de habitación</option>
+      <option *ngFor="let type of roomTypes" [value]="type">
+        {{ type }}
+      </option>
+    </select>
+  </div>
+
+ 
+  <button (click)="handleSearch()">Buscar habitaciones</button>
+</div>

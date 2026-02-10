@@ -1,0 +1,74 @@
+<div class="home">
+    <!-- HEADER SECTION -->
+    <header>
+      <img src="./images/bg.jpg" alt="Hotelazo" />
+      <div class="overlay"></div>
+      <div class="overlay-content">
+        <h1>Bienvenidos al <span class="color">Hotelazo</span></h1>
+        <h3>Entra en un refugio de confort y cuidado</h3>
+      </div>
+    </header>
+  
+    <!-- Room Search Component -->
+    <app-roomsearch
+      (searchResults)="handleSearchResult($event)"
+    ></app-roomsearch>
+  
+    <!-- Room Result Component -->
+  
+    <app-roomresult [roomSearchResults]="searchResults"></app-roomresult>
+  
+    <h4><a class="rooms" href="/rooms">Todas las habitaciones</a></h4>
+  
+    <!-- Services Section -->
+    <h2>Servicios en <span class="color">Hotelazo</span></h2>
+  
+    <section>
+      <div class="card">
+        <img src="./images/ac.png" alt="Air Conditioning" />
+        <div class="details">
+          <h3 class="title">Aire acondicionado</h3>
+          <p class="description">
+            Mantente fresco y cómodo durante toda tu estancia con nuestro 
+            aire acondicionado en la habitación, controlado de manera individual.
+          </p>
+        </div>
+      </div>
+  
+      <div class="card">
+        <img src="./images/mini-bar.png" alt="Mini Bar" />
+        <div class="details">
+          <h3 class="title">Mini Bar</h3>
+          <p class="description">
+            Disfruta de una cómoda selección de bebidas y aperitivos disponibles 
+            en el minibar de tu habitación sin coste adicional.
+          </p>
+        </div>
+      </div>
+  
+      <div class="card">
+        <img src="./images/parking.png" alt="Parking" />
+        <div class="details">
+          <h3 class="title">Parking</h3>
+          <p class="description">
+            Ofrecemos estacionamiento en el lugar para su conveniencia. 
+            Por favor, consulte sobre las opciones de valet parking 
+            si están disponibles.
+          </p>
+        </div>
+      </div>
+  
+      <div class="card">
+        <img src="./images/wifi.png" alt="WiFi" />
+        <div class="details">
+          <h3 class="title">WiFi</h3>
+          <p class="description">
+            Manténgase conectado durante su estancia con acceso gratuito 
+            a Wi-Fi de alta velocidad disponible en todas las 
+            habitaciones y áreas comunes.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+  

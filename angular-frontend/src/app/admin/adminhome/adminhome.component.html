@@ -1,0 +1,11 @@
+<div class="admin">
+    <!-- Show error message if any -->
+    <p *ngIf="error" class="error">{{ error }}</p>
+    <h1>Bienvenido, {{ adminName }}</h1>
+    <div class="actions">
+      <button (click)="navigateToManageRooms()">Administrar habitaciones</button>
+      <button (click)="navigateToManageBookings()">Gestionar reservas</button>
+    </div>
+  
+  </div>
+  

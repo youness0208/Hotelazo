@@ -1,0 +1,28 @@
+<div class="container">
+    <p *ngIf="error" class="error">{{ error }}</p>
+      <h2>Todas las habitaciones</h2>
+    
+ 
+      <div class="filter">
+        <label>Filtrar por tipo de habitación</label>
+        <select [(ngModel)]="selectedRoomType" (change)="handleRoomTypeChange($event)">
+          <option value="">Todo</option>
+          <option *ngFor="let type of roomTypes" [value]="type">{{ type }}</option>
+        </select>
+      </div>
+    
+     
+      <app-roomsearch (searchResults)="handleSearchResult($event)"></app-roomsearch>
+    
+    
+      <app-roomresult [roomSearchResults]="currentRooms"></app-roomresult>
+    
+  
+      <app-pagination
+        [roomPerPage]="roomsPerPage"
+        [totalRooms]="filteredRooms.length"
+        [currentPage]="currentPage"
+        (paginate)="paginate($event)"
+      ></app-pagination>
+    </div>
+    

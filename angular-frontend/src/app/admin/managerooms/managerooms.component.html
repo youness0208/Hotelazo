@@ -1,0 +1,29 @@
+<div class="all-rooms">
+  
+    <div *ngIf="error" class="error">{{ error }}</div>
+      <h2>Todas las habitaciones</h2>
+    
+      <!-- Filter and Add Room Section -->
+      <div class="filter-div">
+        <div class="filter-child">
+          <label>Filtrar por tipo de habitación:</label>
+          <select [(ngModel)]="selectedRoomType" (change)="handleRoomTypeChange($event)">
+            <option value="">todo</option>
+            <option *ngFor="let type of roomTypes" [value]="type">{{ type }}</option>
+          </select>
+          <button (click)="navigateToAddRoom()">Añadir habitación</button>
+        </div>
+      </div>
+    
+      <!-- Room Result Component -->
+      <app-roomresult [roomSearchResults]="currentRooms"></app-roomresult>
+    
+      <!-- Pagination Component -->
+      <app-pagination
+        [roomPerPage]="roomsPerPage"
+        [totalRooms]="filteredRooms.length"
+        [currentPage]="currentPage"
+        (paginate)="paginate($event)"
+      ></app-pagination>
+    </div>
+    
